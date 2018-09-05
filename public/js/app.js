@@ -71094,7 +71094,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -71204,10 +71204,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
             _this.rolesHasSelected.forEach(function (item) {
 
-                var indexObj = _this.roles.map(function (itemSub) {
-                    return itemSub.name;
-                }).indexOf(item.name);
-
+                var indexObj = _this.roles.indexOf(item.name);
                 _this.roles.splice(indexObj, 1);
             });
         }, function (error) {
@@ -71236,8 +71233,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.rolesHasSelected.splice(index, 1);
         },
         editRoles: function editRoles() {
+            var _this2 = this;
+
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put('/api/v1/roles/' + this.$route.params.id, { role: this.rolesHasSelected, name: this.roleName }).then(function (response) {
-                console.log(response.data);
+                _this2.$router.push({
+                    name: 'rolesIndex'
+                });
             }, function (error) {
                 console.log(error.message);
             });

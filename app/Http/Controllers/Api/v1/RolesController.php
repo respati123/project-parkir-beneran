@@ -61,29 +61,24 @@ class RolesController extends Controller
 
     public function update(Request $request, $id){
 
-        $dataRole = 0;
-        $dataName = 0;
+
         $dataTemp = $request->all();
         for($i = 0; $i < count($dataTemp); $i++){
             $dataRole = $dataTemp['role'];
             $dataName = $dataTemp['name'];
         }
 
-        $this->inputRole($dataRole);
-        $this->inputName($dataName);
+        $dataSync = array();
+        foreach($dataTemp['role'] as $key => $req){
+            $dataSync[$key] = $req['value'];
+        }
 
+        $post = Role::find($id);
+        $post->update([
+            'name' => $dataTemp['name']['name']
+        ]);
+        $post->permission()->sync($dataSync);
 
-//        $dataSync = array();
-//        foreach($request->all() as $key => $req){
-//            $dataSync[$key] = $req['value'];
-//        }
-//
-//        $post = Role::find($id);
-//        $post->update([
-//            'name' => $req
-//        ])
-//        $post->permission->sync($dataSync);
-//
-//        return response()->json('success', Response::HTTP_OK);
+        return response()->json('success', Response::HTTP_OK);
     }
 }

@@ -95,12 +95,11 @@
                     });
                     this.rolesHasSelected.forEach(item => {
 
-                       let indexObj = this.roles.map(itemSub => {
-                           return itemSub.name;
-                       }).indexOf(item.name);
-
+                       let indexObj = this.roles.indexOf(item.name);
                        this.roles.splice(indexObj, 1);
                     });
+
+
                 }, (error) => {
                     console.log(error.message)
                 });
@@ -132,7 +131,9 @@
             editRoles: function(){
                axios.put('/api/v1/roles/' + this.$route.params.id, {role:this.rolesHasSelected, name:this.roleName})
                    .then(response => {
-                       console.log(response.data);
+                       this.$router.push({
+                           name: 'rolesIndex'
+                       });
                    }, (error => {
                        console.log(error.message);
                    }));
