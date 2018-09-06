@@ -31,3 +31,7 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\v1', 'as' => 'api.'], funct
     });
 });
 
+Route::group(['prefix' => '/v1', 'namespace' => 'Api\v1', 'as' => 'api.'], function(){
+    Route::resource('menus', 'MenusController', ['expect' => ['create','edit']]);
+});
+

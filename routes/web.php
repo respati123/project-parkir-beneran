@@ -152,6 +152,18 @@ Route::group(['prefix' => 'vehiclebrands', 'as' => 'vehiclebrands.'], function()
     })->where('create-vehicle-brands', '[\/\w\.-]*')->name('create');
 });
 
+Route::group(['prefix' => 'menus', 'as' => 'menus.'], function(){
+    Route::get('/', function(){
+        return view('welcome');
+    })->where('list-menus', '[\/\w\.-]*')->name('index');
+    Route::get('/edit/{id}', function(){
+        return view('welcome');
+    })->where('edit-menus', '[\/\w\.-]*')->name('edit');
+    Route::get('/create', function(){
+        return view('welcome');
+    })->where('create-menus', '[\/\w\.-]*')->name('create');
+});
+
 Route::get('/delete', function(){
 
     $roles = \App\Role::find(20);

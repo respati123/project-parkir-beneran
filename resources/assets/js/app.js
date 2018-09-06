@@ -17,6 +17,7 @@ import axios from 'axios'
 
 window.Vue = require('vue');
 
+Vue.prototype.$http = axios;
 Vue.use(VueRouter);
 Vue.use(VueStash);
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
